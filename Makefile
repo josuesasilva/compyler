@@ -1,4 +1,4 @@
-PYTTHON=python
+PYTTHON=python3
 
 test:
 	make test_scanner
