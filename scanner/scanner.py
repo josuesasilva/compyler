@@ -37,6 +37,8 @@ class Scanner(object):
                 state = 0
             elif char.isalpha():
                 state = 1
+            elif char == "-":
+                state = 2
 
             if state == 0:
                 sentence = ""
@@ -55,6 +57,13 @@ class Scanner(object):
                     self.add_token(TokenEnum.KEYWORD, sentence)
                 else:
                     self.add_token(TokenEnum.IDENTIFIER, sentence)
+            elif state == 2:
+                sentence = char
+                char = self.get()
+                while char.isnumeric():
+                    sentence += char
+                    char = self.get()
+                self.add_token(TokenEnum.INTEGER, sentence)
 
             if char == ",":
                 self.add_token(TokenEnum.COMMA, char)
