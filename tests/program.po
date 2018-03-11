@@ -1,0 +1,14 @@
+INTEIRO: numero1;
+
+numero1 = 1;
+
+INTEIRO: numero2;
+
+numero2 = 2;
+
+INTEIRO: numero3, numero4;
+
+numero3 = 3;
+
+LER numero1;
+IMPRIMIR numero1;
