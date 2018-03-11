@@ -8,7 +8,7 @@ numero2 = 2;
 
 INTEIRO: numero3, numero4;
 
-numero3 = 3;
+numero3 = -3;
 
 LER numero1;
 IMPRIMIR numero1;
