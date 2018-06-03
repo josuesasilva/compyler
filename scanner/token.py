@@ -12,6 +12,7 @@ class TokenEnum(Enum):
     TEXT = 9
     FLOAT = 10
     ARITHMETIC = 11
+    EOF = 12
 
 class Token(object):
 
