@@ -59,3 +59,7 @@ class TestScanner(unittest.TestCase):
         self.assertEqual(len(tokens[TokenEnum.TEXT]), 1)
         self.assertEqual(len(tokens[TokenEnum.FLOAT]), 1)
         self.assertEqual(len(tokens[TokenEnum.ARITHMETIC]), 2)
+
+    def test_token_list(self):
+        self.scanner.scan()
+        self.assertEqual(len(self.scanner.tokens_list), 51)

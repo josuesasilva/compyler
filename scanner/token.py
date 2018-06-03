@@ -19,5 +19,5 @@ class Token(object):
         self.token = token
         self.value = value
 
-    def __str__(self):
-        return "%s -> %s", self.token, self.value
+    def __repr__(self):
+        return "{} -> {}".format(self.token, self.value)

@@ -10,6 +10,7 @@ class Scanner(object):
         self.eof = self.stream.tell() 
         self.stream.seek(0, 0)
         self.tokens = {}
+        self.tokens_list = []
 
     def peek(self):
         pos = self.stream.tell()
@@ -36,6 +37,7 @@ class Scanner(object):
         if not token in self.tokens.keys():
             self.tokens[token] = []
         self.tokens[token].append(value)
+        self.tokens_list.append(Token(token, value))
 
     def is_linecomment(self):
         line = self.peek_line()
