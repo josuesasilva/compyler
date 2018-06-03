@@ -9,6 +9,9 @@ class TokenEnum(Enum):
     COMMA = 6
     ASSIGNMENT = 7
     KEYWORD = 8
+    TEXT = 9
+    FLOAT = 10
+    ARITHMETIC = 11
 
 class Token(object):
 

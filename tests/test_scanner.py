@@ -29,7 +29,17 @@ class TestScanner(unittest.TestCase):
         self.scanner.get()
         self.assertEqual(self.scanner.peek(), 'N')
         self.assertEqual(self.scanner.peek(), 'N')
-        
+
+    def test_getline(self):
+        self.assertEqual(self.scanner.get_line(), 'INTEIRO: numero1;\n')
+        self.assertEqual(self.scanner.get_line(), '\n')
+
+    def test_peekline(self):
+        self.assertEqual(self.scanner.peek_line(), 'INTEIRO: numero1;\n')
+        self.assertEqual(self.scanner.peek_line(), 'INTEIRO: numero1;\n')
+
+    def test_islinecomment(self):
+        self.assertEqual(self.scanner.is_linecomment(), False)
 
     def test_eof(self):
         while not self.scanner.is_eof():
@@ -38,11 +48,14 @@ class TestScanner(unittest.TestCase):
 
     def test_scan(self):
         tokens = self.scanner.scan()
-        self.assertEqual(len(tokens[TokenEnum.TYPE]), 3)
-        self.assertEqual(len(tokens[TokenEnum.INTEGER]), 3)
-        self.assertEqual(len(tokens[TokenEnum.COLON]), 3)
+        self.assertEqual(len(tokens[TokenEnum.TYPE]), 4)
+        self.assertEqual(len(tokens[TokenEnum.INTEGER]), 5)
+        self.assertEqual(len(tokens[TokenEnum.COLON]), 4)
         self.assertEqual(len(tokens[TokenEnum.COMMA]), 1)
-        self.assertEqual(len(tokens[TokenEnum.IDENTIFIER]), 9)
-        self.assertEqual(len(tokens[TokenEnum.SEMICOLON]), 8)
-        self.assertEqual(len(tokens[TokenEnum.ASSIGNMENT]), 3)
-        self.assertEqual(len(tokens[TokenEnum.KEYWORD]), 2)
+        self.assertEqual(len(tokens[TokenEnum.IDENTIFIER]), 15)
+        self.assertEqual(len(tokens[TokenEnum.SEMICOLON]), 9)
+        self.assertEqual(len(tokens[TokenEnum.ASSIGNMENT]), 6)
+        self.assertEqual(len(tokens[TokenEnum.KEYWORD]), 3)
+        self.assertEqual(len(tokens[TokenEnum.TEXT]), 1)
+        self.assertEqual(len(tokens[TokenEnum.FLOAT]), 1)
+        self.assertEqual(len(tokens[TokenEnum.ARITHMETIC]), 2)
