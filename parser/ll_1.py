@@ -1,28 +1,45 @@
 from scanner.scanner import Scanner
 from scanner.token import Token, TokenEnum
+from parser.ast import *
 
 class LL1(object):
     
     def __init__(self, tokens):
+        self.ast = Portugol()
         self.tokens = tokens
         self.tokens.append(Token(TokenEnum.EOF, "$"))
         self.index = 0
         self.keywords = ["PROGRAMA", "INTEIRO", "INICIO", "FIM", "VARIAVEIS", "REAL", "IMPRIMA", "LEIA"]
+
+    def get_token(self):
+        return self.tokens[self.index].value
+
+    def update_index(self):
+        self.index += 1
     
     def parse(self):
-        pass
+        if self.portugol() and self.get_token() == TokenEnum.EOF:
+            print("Done.\nSuccess!")
+            return 0
+        else:
+            print("Done.\nError.")
+            return 1
 
     def portugol(self):
-        pass
+        return True
     
     def statements(self):
-        pass
+        return
 
     def statement(self):
         pass
 
     def vartype(self):
-        pass
+        token = self.get_token()
+        if token == 'INTEIRO':
+            return True
+        elif token == 'REAL':
+            return True
 
     def identifiers(self):
         pass
@@ -49,7 +66,15 @@ class LL1(object):
         pass
     
     def opcode(self):
-        pass
+        token = self.get_token()
+        if token == "+":
+            return True
+        elif token == "-":
+            return True
+        elif token == "*":
+            return True
+        elif token == "/":
+            return True
 
     def integer(self):
         pass
@@ -61,9 +86,9 @@ class LL1(object):
         pass
 
     def digit(self):
-        pass
+        return self.get_token().isnumeric() 
 
     def word(self):
-        pass
+        return self.get_token().isalpha() 
 
     

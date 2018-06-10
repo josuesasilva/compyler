@@ -24,4 +24,6 @@ class TestParser(unittest.TestCase):
     def test_index(self):
         self.assertEqual(self.parser.index, 0)
 
-    
+    def test_parser(self):
+        result = self.parser.parse()
+        self.assertEqual(result, 1)
