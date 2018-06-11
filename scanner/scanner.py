@@ -130,7 +130,7 @@ class Scanner(object):
                     sentence += char
                     char = self.get()
 
-                sentence += self.get()
+                sentence += char
                 self.add_token(TokenEnum.TEXT, sentence)
 
             if char == ",":

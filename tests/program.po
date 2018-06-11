@@ -1,32 +1,21 @@
-INTEIRO: numero1;
+PROGRAMA teste;
 
-IMPRIMA "inicio do programa"
+VARIAVEIS 
+    INTEIRO: a1, a2, a3; REAL: b1, b2, b5; 
+    
+    INICIO 
+    
+    IMPRIMA "inicio";
 
-REAL: numeroReal1;
+    LEIA a2;
 
-numeroReal1 = 23.2
+    IMPRIMA a2;
 
-// Comentário
+    a1 = 1 + 2 + 4;
+    asd = 12;
 
-numero1 = 1;
+    IMPRIMA asd;
 
-INTEIRO: numero2;
-
-numero2 = 2;
-
-INTEIRO: numero3, numero4;
-
-numero3 = -3;
-
-//numero3 = -3;
-
-/*
-LEIA numero1;
-IMPRIMA numero1;
-*/
-
-LEIA numero1;
-IMPRIMA numero1;
-
-numero1 = numero1 + numero2
-numero2 = 1 / 2
+    IMPRIMA "fim";
+    
+    FIM

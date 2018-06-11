@@ -5,7 +5,7 @@ from scanner.token import TokenEnum
 class TestScanner(unittest.TestCase):
 
     def setUp(self):
-        self.file = open('tests/program.po', 'r')
+        self.file = open('tests/program-old.po', 'r')
         self.scanner = Scanner(self.file)
 
     def tearDown(self):

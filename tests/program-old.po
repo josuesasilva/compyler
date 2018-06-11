@@ -1,0 +1,32 @@
+INTEIRO: numero1;
+
+IMPRIMA "inicio do programa"
+
+REAL: numeroReal1;
+
+numeroReal1 = 23.2
+
+// Comentário
+
+numero1 = 1;
+
+INTEIRO: numero2;
+
+numero2 = 2;
+
+INTEIRO: numero3, numero4;
+
+numero3 = -3;
+
+//numero3 = -3;
+
+/*
+LEIA numero1;
+IMPRIMA numero1;
+*/
+
+LEIA numero1;
+IMPRIMA numero1;
+
+numero1 = numero1 + numero2
+numero2 = 1 / 2

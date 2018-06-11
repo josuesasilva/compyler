@@ -47,7 +47,7 @@ class StatementR(Statements):
     '''
     def __init__(self):
         self.statements = None
-        self.statment = None
+        self.statement = None
 
 
 class Statement(Statements):
@@ -66,6 +66,7 @@ class Identifiers(Statement):
     <identificadores>   := <identificador> <identificador_r>
     '''
     def __init__(self):
+        super().__init__()
         self.identifier = None
         self.identifier_r = None
 
@@ -76,6 +77,7 @@ class IdentifierR(Identifiers):
     <identificador_r>   := ,<identificador> <identificador_r> | lambda
     '''
     def __init__(self):
+        super().__init__()
         self.identifier = None
         self.identifiers = None
 
@@ -86,15 +88,27 @@ class Identifier(Identifiers):
     <identiﬁcador> := <letra> (<letra> | <digito>)∗
     '''
     def __init__(self):
+        super().__init__()
         self.value = None
 
 
 class Instructions(Portugol):
     
     '''
-    <instrucoes> := <instrucao> <instrucoes> | <instrucao>
+    <instrucoes> := <instrucao> <instrucao_r>
     '''
     def __init__(self):
+        super().__init__()
+        self.instruction = None
+        self.instruction_r = None
+
+class InstructionR(Instructions):
+    
+    '''
+    <instrucoes> := <instrucao> <instrucoes> | lambda
+    '''
+    def __init__(self):
+        super().__init__()
         self.instruction = None
         self.instructions = None
 
@@ -105,6 +119,7 @@ class Instruction(Instructions):
     <instrucao> := <atribuicao> | <instrucao_leitura> | <instrucao_escrita>
     '''
     def __init__(self):
+        super().__init__()
         self.assign = None
         self.write = None
         self.read = None
@@ -116,6 +131,7 @@ class Assign(Instruction):
     <atribuicao> := <identiﬁcador> = <expressao>;
     '''
     def __init__(self):
+        super().__init__()
         self.identifier = None
         self.expression = None
 
@@ -126,6 +142,7 @@ class Read(Instruction):
     <instrucao_leitura> := LEIA <identiﬁcador>;
     '''
     def __init__(self):
+        super().__init__()
         self.identifier = None
 
 
@@ -135,6 +152,7 @@ class Write(Instruction):
     <instrucao_escrita> := IMPRIMA (<texto> | <expressao>);
     '''    
     def __init__(self):
+        super().__init__()
         self.value = None
 
 
@@ -170,6 +188,7 @@ class Type(Statement):
     <tipo> := INTEIRO | REAL
     '''
     def __init__(self):
+        super().__init__()
         self.value = None
 
 class Integer:

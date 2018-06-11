@@ -6,7 +6,7 @@ from parser.ll_1 import LL1
 class TestParser(unittest.TestCase):
 
     def setUp(self):
-        self.file = open('tests/program.po', 'r')
+        self.file = open('tests/program-old.po', 'r')
         self.scanner = Scanner(self.file)
         self.scanner.scan()
         self.tokens = self.scanner.tokens_list
