@@ -1,5 +1,10 @@
 PYTTHON=python3
 
+all: run
+
+run:
+	$(PYTTHON) main.py
+
 test:
 	make test_scanner
 	make test_parser
