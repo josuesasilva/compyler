@@ -1,2 +1,7 @@
 O projeto foi desenvolvido utilizando a linguagem Python versão 3.6.5.
 Lebrando que não é possível executar o projeto com versões inferiores a 3.x.x.
+
+Para executar basta acessar o terminal, em seguida o local do projeto.
+Então executar:
+
+$ python3 main.py caminho_do_programa/nome_do_programa.po
