@@ -4,4 +4,17 @@ Lebrando que não é possível executar o projeto com versões inferiores a 3.x.
 Para executar basta acessar o terminal, em seguida o local do projeto.
 Então executar:
 
-$ python3 main.py caminho_do_programa/nome_do_programa.po
+$ cd caminho/do/projeto
+$ python3 main.py tests/program.po
+
+ou 
+
+$ make run
+
+Para execução de testes unitários:
+
+$ make test
+
+
+*Para executar corretamente é necessário estar na pasta raiz do projeto.
+
