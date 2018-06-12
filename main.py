@@ -22,8 +22,8 @@ def main():
     scanner = Scanner(file)
     scanner.scan()
     tokens = scanner.tokens_list
-    print(tokens)
-    print("\n\n")
+    print(*tokens, sep='\n')
+    print("\n")
     parser = LL1(tokens)
     parser.parse()
 
