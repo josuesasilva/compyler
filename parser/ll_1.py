@@ -31,6 +31,10 @@ class LL1(object):
             return 1
 
     def portugol(self):
+
+        '''
+        <Portugol> := PROGRAMA <identiﬁcadores> ; VARIAVEIS <declaracoes> INICIO <instrucoes> FIM
+        '''
         portugol = Portugol()
 
         if self.get_token() == "PROGRAMA":
@@ -51,7 +55,7 @@ class LL1(object):
                 return False    
 
         else:
-            print("Error: missing statement PRROGRAMA at", self.index)
+            print("Error: missing statement PROGRAMA at", self.index)
             return False
 
         if self.get_token() == "VARIAVEIS":
@@ -90,6 +94,10 @@ class LL1(object):
             return False
     
     def statements(self, statements):
+
+        '''
+        <declaracoes> := <declaracao> <declaracoes> | <declaracao>
+        '''
         stat_r = StatementR()
         stat_r.statement = Statement()
 
@@ -127,6 +135,10 @@ class LL1(object):
         return False
 
     def statement(self, statement):
+
+        '''
+        <declaracao> := <tipo> : <identiﬁcadores>
+        '''
         if self.check_type():
             statement.vartype = self.get_token()
             self.update_index()
@@ -158,6 +170,10 @@ class LL1(object):
             return True
 
     def identifiers(self, identifiers):
+
+        '''
+        <identificadores>   := <identificador> <identificador_r>
+        '''
         ident_r = IdentifierR()
         ident_r.identifier = Identifier()
 
@@ -178,6 +194,10 @@ class LL1(object):
         return False
 
     def identifier(self, identifier):
+
+        '''
+        <identiﬁcador> := <letra> (<letra> | <digito>)∗
+        '''
         if self.get_token_type() == TokenEnum.IDENTIFIER and self.get_token not in self.keywords:
             identifier.value = self.get_token()
             self.update_index()
@@ -210,6 +230,10 @@ class LL1(object):
         return False
 
     def instructions(self, instructions):
+
+        '''
+        <instrucoes> := <instrucao> <instrucao_r>
+        '''
         inst_r = InstructionR()
         inst_r.instruction = Instruction()
 
@@ -248,6 +272,10 @@ class LL1(object):
         return False
 
     def instruction(self, instruction):
+
+        '''
+        <instrucao> := <atribuicao> | <instrucao_leitura> | <instrucao_escrita>
+        '''
         if self.get_token() == "IMPRIMA":
             return self.write()
         elif self.get_token() == "LEIA":
@@ -258,6 +286,10 @@ class LL1(object):
         return False
 
     def assign(self, instruction):
+
+        '''
+        <atribuicao> := <identiﬁcador> = <expressao>;
+        '''
         instruction.identifier = Identifier()
 
         if not self.identifier(instruction.identifier):
@@ -280,6 +312,10 @@ class LL1(object):
             return False
 
     def read(self):
+
+        '''
+        <instrucao_leitura> := LEIA <identiﬁcador>;
+        '''
         self.update_index()
 
         identifiers = Identifiers()
@@ -296,6 +332,10 @@ class LL1(object):
             return False
 
     def write(self):
+
+        '''
+        <instrucao_escrita> := IMPRIMA (<texto> | <expressao>);
+        ''' 
         self.update_index()
 
         if self.expressions():
@@ -314,6 +354,10 @@ class LL1(object):
         return False
 
     def expression(self):
+
+        '''
+        <expressao> := <expressao> <operador> <expressao> | <identiﬁcador> | <inteiro> | <real>
+        '''
         if self.number():
             self.update_index()
             return True
@@ -382,4 +426,7 @@ class LL1(object):
     def word(self):
         return self.get_token_type() == TokenEnum.TEXT
 
+'''
+Referencia da árvore
+'''
     

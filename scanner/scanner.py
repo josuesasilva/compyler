@@ -1,8 +1,5 @@
 from scanner.token import Token, TokenEnum
 
-import ipdb
-
-
 class Scanner(object):
 
     def __init__(self, stream):
@@ -62,14 +59,14 @@ class Scanner(object):
                 if line.endswith("*/") or line.endswith("*/\n"):
                     return
 
-    def igonre_linecomment(self):
+    def ignore_linecomment(self):
         if self.is_linecomment():
             self.get_line()
 
     def scan(self):
         while not self.is_eof():
             
-            self.igonre_linecomment()
+            self.ignore_linecomment()
             self.ignore_blockcomment()
 
             char = self.get()

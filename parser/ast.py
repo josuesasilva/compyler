@@ -181,15 +181,12 @@ class ExpressionR(Expressions):
         self.expression = None
         self.expressions = None
 
-
+'''
 class Type(Statement):
-
-    '''
-    <tipo> := INTEIRO | REAL
-    '''
     def __init__(self):
         super().__init__()
         self.value = None
+
 
 class Integer:
         
@@ -208,3 +205,4 @@ class Text:
     def __init__(self, value):
         self.value = value
 
+'''
