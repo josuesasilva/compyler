@@ -2,12 +2,14 @@ import re
 from scanner.scanner import Scanner
 from scanner.token import Token, TokenEnum
 from parser.ast import *
+from parser.generator import Generator
 
 class LL1(object):
     
     def __init__(self, tokens):
-        self.ast = None
+        self.ast = []
         self.tokens = tokens
+        self.generator = Generator(tokens, self.ast)
         self.tokens.append(Token(TokenEnum.EOF, "$"))
         self.index = 0
         self.keywords = ["PROGRAMA", "INTEIRO", "INICIO", "FIM", "VARIAVEIS", "REAL", "IMPRIMA", "LEIA"]
@@ -24,6 +26,8 @@ class LL1(object):
     
     def parse(self):
         if self.portugol() and self.get_token_type() == TokenEnum.EOF:
+            print(self.ast)
+            self.generator.start()
             print("Done.\nSuccess!")
             return 0
         else:
@@ -72,7 +76,7 @@ class LL1(object):
             return False
 
         if self.get_token() == "INICIO":
-            
+            self.ast.append(self.get_token())
             self.update_index()
             portugol.instructions = Instructions()
 
@@ -199,6 +203,7 @@ class LL1(object):
         <identiﬁcador> := <letra> (<letra> | <digito>)∗
         '''
         if self.get_token_type() == TokenEnum.IDENTIFIER and self.get_token not in self.keywords:
+            self.ast.append(self.get_token())
             identifier.value = self.get_token()
             self.update_index()
             return True
@@ -277,10 +282,13 @@ class LL1(object):
         <instrucao> := <atribuicao> | <instrucao_leitura> | <instrucao_escrita>
         '''
         if self.get_token() == "IMPRIMA":
+            self.ast.append(self.get_token())
             return self.write()
         elif self.get_token() == "LEIA":
+            self.ast.append(self.get_token())
             return self.read()
         elif self.assign(instruction):
+            self.ast.append(self.get_token())
             return True
 
         return False
@@ -296,6 +304,7 @@ class LL1(object):
             return False
 
         if self.get_token() == "=":
+            self.ast.append(self.get_token())
             self.update_index()
         else:
             return False
@@ -306,6 +315,7 @@ class LL1(object):
             return False
 
         if self.get_token() == ";":
+            self.ast.append(self.get_token())
             self.update_index()
             return True
         else:
@@ -323,6 +333,7 @@ class LL1(object):
         if self.identifiers(identifiers):
             
             if self.get_token() == ";":
+                self.ast.append(self.get_token())
                 self.update_index()
                 return True
             else:
@@ -341,13 +352,16 @@ class LL1(object):
         if self.expressions():
 
             if self.get_token() == ";":
+                self.ast.append(self.get_token())
                 self.update_index()
                 return True
 
         elif self.word():
+            self.ast.append(self.get_token())
             self.update_index()
             
             if self.get_token() == ";":
+                self.ast.append(self.get_token())
                 self.update_index()
                 return True
         
@@ -359,6 +373,7 @@ class LL1(object):
         <expressao> := <expressao> <operador> <expressao> | <identiﬁcador> | <inteiro> | <real>
         '''
         if self.number():
+            self.ast.append(self.get_token())
             self.update_index()
             return True
         
@@ -403,13 +418,19 @@ class LL1(object):
     def opcode(self):
         token = self.get_token()
         if token == "+":
+            self.ast.append(self.get_token())
             return True
         elif token == "-":
+            self.ast.append(self.get_token())
             return True
         elif token == "*":
+            self.ast.append(self.get_token())
             return True
         elif token == "/":
+            self.ast.append(self.get_token())
             return True
+        else:
+            return False
 
     def check_type(self):
         token = self.get_token()

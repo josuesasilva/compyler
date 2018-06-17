@@ -12,9 +12,9 @@ VARIAVEIS
     IMPRIMA a2;
 
     a1 = 1 + 2 + 4;
-    asd = 12;
+    a3 = 12;
 
-    IMPRIMA asd;
+    IMPRIMA a3;
 
     IMPRIMA "fim";
     
