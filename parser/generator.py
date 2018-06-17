@@ -82,7 +82,7 @@ class Generator:
 
             print("[r, {}, -, -]".format(instruction[1]))
         else:
-            pass
+            self.generate_multi("t0", instruction[1:len(instruction)])
 
     def generate_write(self, instruction):
 
@@ -93,7 +93,7 @@ class Generator:
 
             print("[w, {}, -, -]".format(instruction[1]))
         else:
-            pass
+            self.generate_multi("t0", instruction[1:len(instruction)])
 
     def generate_attribution(self, instruction):
         
@@ -107,7 +107,21 @@ class Generator:
 
             print("[=, {}, {}, -]".format(instruction[0], instruction[1]))
         else:
-            pass
+            self.generate_multi(instruction[0], instruction[instruction.index("=") + 1:len(instruction)])
+    
+    def generate_multi(self, id, instruction):
+        
+        if len(instruction) < 3:
+            print("Invalid statement")
+            sys.exit()
+        # 1, +, 2, *, 4
+        print("[{}, {}, {}, {}]".format(instruction[1], instruction[0], instruction[2], id))
+
+        instruction = instruction[3:len(instruction)]
+        
+        while len(instruction) > 0:
+            print("[{}, {}, {}, {}]".format(instruction[0], instruction[1], id, id))
+            instruction = instruction[2:len(instruction)]
 
     def has_statment(self, id):
         if id.startswith("\"") and id.endswith("\"") or match("(\d+(?:\.\d+)?)", id):
@@ -116,5 +130,5 @@ class Generator:
         if id in self.statements:
             return True
 
-        print("Missing statment {}".format(id))
+        print("Missing statement {}".format(id))
         return False
